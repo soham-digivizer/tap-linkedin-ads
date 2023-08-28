@@ -284,6 +284,7 @@ class AdAnalyticsByCampaignInit(LinkedInAdsStream):
         return [
             "viralLandingPageClicks,viralExternalWebsitePostClickConversions,externalWebsiteConversions,viralVideoFirstQuartileCompletions,leadGenerationMailContactInfoShares,clicks,viralClicks,shares,viralFullScreenPlays,videoMidpointCompletions,viralCardClicks,viralExternalWebsitePostViewConversions,viralTotalEngagements,viralCompanyPageClicks,actionClicks,viralShares,videoCompletions,comments,externalWebsitePostViewConversions,dateRange",
             "costInUsd,landingPageClicks,oneClickLeadFormOpens,talentLeads,sends,viralOneClickLeadFormOpens,conversionValueInLocalCurrency,viralFollows,otherEngagements,viralVideoCompletions,cardImpressions,leadGenerationMailInterestedClicks,opens,totalEngagements,videoViews,viralImpressions,viralVideoViews,commentLikes,viralDocumentThirdQuartileCompletions,viralLikes",
+
             "adUnitClicks,videoThirdQuartileCompletions,cardClicks,likes,viralComments,viralVideoMidpointCompletions,viralVideoThirdQuartileCompletions,oneClickLeads,fullScreenPlays,viralCardImpressions,follows,videoStarts,videoFirstQuartileCompletions,textUrlClicks,reactions,viralReactions,externalWebsitePostClickConversions,viralOtherEngagements,costInLocalCurrency",
             "viralVideoStarts,viralRegistrations,viralJobApplyClicks,viralJobApplications,jobApplications,jobApplyClicks,viralExternalWebsiteConversions,postViewRegistrations,companyPageClicks,documentCompletions,documentFirstQuartileCompletions,documentMidpointCompletions,documentThirdQuartileCompletions,downloadClicks,viralDocumentCompletions,viralDocumentFirstQuartileCompletions,viralDocumentMidpointCompletions,approximateUniqueImpressions,viralDownloadClicks,impressions",
         ]
@@ -385,6 +386,7 @@ class AdAnalyticsByCampaign(AdAnalyticsByCampaignInit):
         end_date = pendulum.parse(self.config["end_date"])
 
         params["q"] = "analytics"
+        
         params["pivot"] = "CAMPAIGN"
         params["timeGranularity"] = "DAILY"
         params["dateRange.start.day"] = start_date.day
@@ -792,7 +794,6 @@ class CampaignGroups(LinkedInAdsStream):
     replication_method = "incremental"
     primary_keys = ["last_modified_time", "id", "status"]
     path = ""
-
     PropertiesList = th.PropertiesList
     Property = th.Property
     ObjectType = th.ObjectType
@@ -849,6 +850,8 @@ class CampaignGroups(LinkedInAdsStream):
     ).to_dict()
 
     schema = jsonschema
+    print("HEEEEEEEELLLLLOOO")
+
 
     @property
     def url_base(self) -> str:
